@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Journal
 {
-    // Class methods
+    // Class properties
     public List<Entry> _userEntries = new List<Entry>();
 
     // Class methods
