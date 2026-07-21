@@ -1,10 +1,16 @@
+// I added file validation when loading a journal.
+// If the user enters a filename that does not exist, the program displays an error message
+// instead of crashing. I also added confirmation messages after saving and loading files.
+
 using System;
-using System.Dynamic;
 
 class Program
 {
     static void Main(string[] args)
     {
+        // Display welcome message
+        Console.WriteLine("Welcome to your Personal Journal!");
+
         Journal journal = new Journal();
         PromptGenerator promptGenerator = new PromptGenerator();
 
@@ -13,7 +19,6 @@ class Program
         while (userInput != "5")
         {
             // Display Menu 
-            Console.WriteLine("Welcome to your Personal Journal!");
             Console.WriteLine("Please select one of the following options:");
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
@@ -50,11 +55,20 @@ class Program
             }
             else if (userInput == "3")
             {
-                Console.WriteLine("Load selected");
+                Console.Write("Enter the filename to load: ");
+                string filename = Console.ReadLine();
+                journal.LoadFromFile(filename);
             }
             else if (userInput == "4")
             {
-                Console.WriteLine("Save selected");
+                Console.Write("What is the filename? ");
+                string filename = Console.ReadLine();
+                
+                journal.SaveToFile(filename);
+            }
+            else if (userInput == "5")
+            {
+                Console.WriteLine("Goodbye!");
             }
             else
             {
@@ -63,7 +77,5 @@ class Program
 
             Console.WriteLine("");
         }
-        
-        
     }
 }
